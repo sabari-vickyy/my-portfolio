@@ -82,6 +82,8 @@ nav ul li a:hover {
 }
 
 .profile-img {
+    position: relative; /* Adds a layer priority */
+    z-index: 10;        /* Pulls the photo to the very front */
     width: 180px;
     height: 220px;
     border-radius: 15px;
