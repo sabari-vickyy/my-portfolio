@@ -1,35 +1,36 @@
-/* --- Global Styles --- */
+/* --- Global Variables & Reset --- */
 :root {
-    --primary-blue: #2c3e50;
-    --accent-orange: #e67e22;
-    --text-dark: #333;
-    --bg-light: #f4f7f6;
+    --primary: #2c3e50;
+    --accent: #e67e22;
+    --light-bg: #f4f7f6;
     --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg-light);
-    color: var(--text-dark);
+    background-color: var(--light-bg);
+    color: #333;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
 /* --- Navigation --- */
 header {
-    background: var(--primary-blue);
-    padding: 15px 0;
+    background: var(--primary);
+    padding: 1rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 nav {
@@ -51,10 +52,7 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
-}
-
-nav ul li {
-    margin-left: 20px;
+    gap: 20px;
 }
 
 nav ul li a {
@@ -65,38 +63,37 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: var(--accent-orange);
+    color: var(--accent);
 }
 
 /* --- Hero Section --- */
 #hero {
     height: 100vh;
-    background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('hero-bg.jpg'); /* Optional background img */
-    background-size: cover;
+    background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9));
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
-    padding-top: 60px;
 }
 
 .hero-content {
-    animation: fadeInDown 1.2s ease-out;
+    animation: fadeInUp 1s ease-out;
 }
 
 .profile-img {
     width: 180px;
     height: 220px;
     border-radius: 15px;
-    border: 4px solid var(--accent-orange);
+    border: 4px solid var(--accent);
     margin-bottom: 20px;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: 0.4s ease;
 }
 
 .profile-img:hover {
     transform: scale(1.05);
+    border-color: #fff;
 }
 
 #hero h1 {
@@ -104,21 +101,15 @@ nav ul li a:hover {
     margin-bottom: 10px;
 }
 
-#hero p {
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-    opacity: 0.9;
-}
-
 .btn {
     padding: 12px 30px;
-    background: var(--accent-orange);
+    background: var(--accent);
     color: white;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
-    transition: 0.3s;
     display: inline-block;
+    transition: 0.3s;
 }
 
 .btn:hover {
@@ -127,7 +118,7 @@ nav ul li a:hover {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* --- Sections Common --- */
+/* --- Standard Section Styling --- */
 section {
     padding: 100px 20px;
     max-width: 1000px;
@@ -137,23 +128,23 @@ section {
 h2 {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 2rem;
-    color: var(--primary-blue);
+    color: var(--primary);
     position: relative;
+    font-size: 2rem;
 }
 
 h2::after {
     content: '';
     width: 50px;
     height: 3px;
-    background: var(--accent-orange);
+    background: var(--accent);
     position: absolute;
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* --- Skills Grid --- */
+/* --- Skills & Cards --- */
 .skills-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -164,8 +155,8 @@ h2::after {
     background: white;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    border-left: 5px solid var(--accent-orange);
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--accent);
     transition: 0.3s;
 }
 
@@ -173,24 +164,23 @@ h2::after {
     transform: translateY(-5px);
 }
 
-/* --- Education Card --- */
 .edu-card {
-    background: var(--primary-blue);
+    background: var(--primary);
     color: white;
     padding: 40px;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
 }
 
-/* --- Project Card --- */
+/* --- Project Card (Desktop) --- */
 .project-card {
     display: flex;
     background: white;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: 0.4s;
+    box-shadow: var(--shadow);
+    transition: 0.4s ease;
 }
 
 .project-card:hover {
@@ -207,51 +197,66 @@ h2::after {
     width: 60%;
 }
 
-/* --- Contact Section --- */
-#contact {
-    text-align: center;
-}
-
-#contact a {
-    color: var(--accent-orange);
-    text-decoration: none;
-    font-weight: bold;
-}
-
+/* --- Footer --- */
 footer {
-    background: var(--primary-blue);
+    background: var(--primary);
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 30px 0;
 }
 
-/* --- Animations --- */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Apply scroll fade-in to sections */
-section {
-    animation: fadeInSection 1s ease-out both;
-}
-
-@keyframes fadeInSection {
-    from { opacity: 0; transform: translateY(20px); }
+/* --- Keyframe Animations --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Mobile Responsive --- */
+/* Apply scroll animation to sections */
+section {
+    animation: fadeInUp 0.8s ease-out both;
+}
+
+/* --- MOBILE RESPONSIVE RULES (Visible Changes) --- */
 @media (max-width: 768px) {
-    .skills-container { grid-template-columns: 1fr; }
-    .project-card { flex-direction: column; }
-    .project-img { width: 100%; height: 200px; }
-    .project-info { width: 100%; }
-    #hero h1 { font-size: 2.2rem; }
+    /* Navigation Adjustments */
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Hero Text Adjustments */
+    #hero h1 {
+        font-size: 2.2rem;
+    }
+
+    /* Skills Stacking */
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Project Card Stacking: Image on Top, Info below */
+    .project-card {
+        flex-direction: column;
+    }
+
+    .project-img {
+        width: 100%;
+        height: 250px;
+    }
+
+    .project-info {
+        width: 100%;
+        padding: 25px;
+    }
+
+    /* Overall Section Padding reduction for mobile */
+    section {
+        padding: 60px 15px;
+    }
 }
